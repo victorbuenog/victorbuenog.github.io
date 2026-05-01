@@ -7,12 +7,11 @@ Santa Clara University | Santa Clara, CA
 ---
 ## 👋 About Me
 I'm a Mechanical Engineering PhD candidate at Santa Clara University specializing in fluid dynamics, thermal systems, and CFD modeling. My work spans cutting-edge research in microfluidic cooling systems, computational fluid dynamics, and machine learning integration for engineering applications. I also have experience in software development (web apps, data pipelines), technical leadership, and teaching mechanical engineering concepts.
----
 ## 🚀 Featured Projects
 *Click project titles to view*
 ### [🛩️ AIAA Design-Build-Fly Competition Aircraft](https://scholarcommons.scu.edu/cgi/viewcontent.cgi?article=1125&context=mech_senior)
 Founded and led SCU's AIAA DBF team through full aircraft design-build-test cycles. Used **SolidWorks Flow Simulation** for wing aerodynamics optimization, conducted wind tunnel testing, and correlated CFD results with flight data.
-### [❄️ Liquid Cooling Systems for Edge Devices]
+### ❄️ Liquid Cooling Systems for Edge Devices (early)
 PhD research designing precision microfluidic pumps for compact liquid cooling systems targeting high-performance computing.
 ### [🌊 Collinear Swimming of Microswimmers](https://arxiv.org/abs/2604.03875)
 Research on hydrodynamic interactions of microswimmers in Newtonian and shear-thinning fluids. Used COMSOL for CFD simulations, processed probe data with Python, and co-authored a peer-reviewed publication.
@@ -27,6 +26,7 @@ React + Vite web application with offline-first design, state management, and lo
 | SolidWorks Flow Simulation | Liquid cooling system design | Machine learning (supervised, RL, PPO) |
 | COMSOL Multiphysics | Two-phase flow & microfluidics | Local LLM experimentation (LM Studio) |
 | STAR-CCM+ | Heat sink design | Data pipelines & ETL workflows |
+
 | **CAD & Design** | **Software & Web Dev** | **Lab & Testing** |
 |-------------------|-------------------------|-------------------|
 | SolidWorks (proficient) | Python (automation, ML) | LabVIEW DAQs |
@@ -34,17 +34,19 @@ React + Vite web application with offline-first design, state management, and lo
 | Fusion360 | React + Vite (web dev) | Thermocouple installation |
 | Design for Manufacturing | Node.js/npm tooling | TIM application & testing |
 | 3D Printing/Prototyping | Notion (planning, docs) | 3D scanners & metrology |
+
 | **Teaching & Communication** | **Leadership & Operations** |
 |-------------------------------|-------------------------------|
 | Technical writing & documentation | Team supervision (15+ staff) |
 | Academic presentations | Event planning & outreach |
 | Curriculum support (FEA, Fluid Mechanics, Heat Transfer) | Crisis management & conflict resolution |
 | Peer tutoring (Tau Beta Pi) | Process optimization |
+
 ---
 ## 🎓 Education
 ### Santa Clara University
 - **PhD in Mechanical Engineering** (Fluid Dynamics & Thermal Systems) – Expected 2029
-  - Focus: Microfluidics, two-phase cooling, CFD, ML integration for fluid systems
+  - Focus: Microfluidics, CFD, RL-powered autonomous swimmers.
 - **MS in Mechanical Engineering** (Design & Manufacturing) – Graduated March 2025
   - Relevant Coursework: Finite Element Methods, Heat Transfer, Advanced Fluid Mechanics, Additive Manufacturing, Machine Learning, Continuum Mechanics
 - **BS in Mechanical Engineering** (Aerospace Minor) – Graduated June 2023
@@ -54,13 +56,12 @@ React + Vite web application with offline-first design, state management, and lo
 ## 💼 Professional Experience
 ### Research Assistant | Santa Clara University School of Engineering (July 2024 – Present)
 - Lead research on liquid cooling systems for edge devices and high-performance computing
-- Develop CFD models (COMSOL, SolidWorks Flow Simulation) to optimize thermal-fluid performance
-- Set up lab test benches with DAQ systems, flow sensors, and thermocouples for validation
-- Analyze experimental datasets to identify performance trends and validate simulations
+- Develop CFD models to optimize thermal-fluid performance
+- Develop Reinforcement Learning models for autonomous swimmers and energy harvesting applications
+- Manufacture precise microfluidic devices for human motion detection
 ### Engineering Intern | HP Inc., Palo Alto, CA (June 2022 – June 2023)
 - Designed mechanical components in SolidWorks for MJF 3D printing applications
 - Performed thermal and geometric FEA on printed parts, correlating with physical testing
-- Worked with Thermal Interface Materials (TIM) for 3D-printed electronics packaging
 - Contributed to patent application for additive manufacturing quality control methods
 ### Teaching Assistant | Santa Clara University (September 2023 – Present)
 - Facilitate lab sections for Mechanical Design, FEA, Fluid Mechanics, Heat Transfer, Vibrations, and Modern Instrumentation
