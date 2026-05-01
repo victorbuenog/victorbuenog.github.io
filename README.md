@@ -15,7 +15,7 @@ Founded and led SCU's AIAA DBF team through full aircraft design-build-test cycl
 PhD research designing precision microfluidic pumps for compact liquid cooling systems targeting high-performance computing.
 ### [🌊 Collinear Swimming of Microswimmers](https://arxiv.org/abs/2604.03875)
 Research on hydrodynamic interactions of microswimmers in Newtonian and shear-thinning fluids. Used COMSOL for CFD simulations, processed probe data with Python, and co-authored a peer-reviewed publication.
-### [📝 AstraNotes - Local-First Notes App](github.com/victorbuenog/astranotes)
+### [📝 AstraNotes - Local-First Notes App](github.com/victorbuenog/AstraNotes)
 React + Vite web application with offline-first design, state management, and local data persistence. Built with modern front-end tooling and UX-focused design.
 
 ---
