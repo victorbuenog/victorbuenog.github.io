@@ -20,6 +20,7 @@ React + Vite web application with offline-first design, state management, and lo
 
 ---
 ## 🛠️ Comprehensive Skills
+
 | **Fluid & CFD** | **Thermal Systems** | **ML/AI & Data** |
 |------------------|----------------------|-------------------|
 | OpenFOAM (CFD) | Heat transfer (conduction, convection, radiation) | Python (NumPy, pandas, scikit-learn) |
