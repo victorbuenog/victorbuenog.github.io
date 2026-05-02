@@ -1,5 +1,5 @@
 # Victor Bueno Garcia's Portfolio
-**Mechanical Engineering PhD Candidate | Fluid Dynamics & CFD Specialist | ML/AI & Software Developer**  
+**Mechanical Engineering PhD Candidate | Fluid Dynamics & CFD Specialist**  
 Santa Clara University | Santa Clara, CA
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victor-bueno-garcia-a32150151/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/victorbuenog)
