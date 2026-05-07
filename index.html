@@ -4,634 +4,695 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor Bueno Garcia | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --bg: #f7f5f0;
+            --card: #ffffff;
+            --ink: #0e0e10;
+            --muted: #5d5d63;
+            --rule: #d8d4ca;
+            --rule-soft: #e8e4d9;
+            --accent: #155e75;
+            --hero-bg: #0e0e10;
+            --hero-fg: #f7f5f0;
+            --hero-trail: rgba(14, 14, 16, 0.08);
+            --hero-particle: rgba(94, 234, 212, 0.55);
+            --hero-particle-2: rgba(125, 211, 252, 0.4);
         }
-
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #07070a;
+                --card: #0f0f14;
+                --ink: #ecebe6;
+                --muted: #8d8b85;
+                --rule: #1d1d22;
+                --rule-soft: #16161b;
+                --accent: #5eead4;
+                --hero-bg: #050509;
+                --hero-fg: #ecebe6;
+                --hero-trail: rgba(5, 5, 9, 0.07);
+                --hero-particle: rgba(94, 234, 212, 0.55);
+                --hero-particle-2: rgba(125, 211, 252, 0.4);
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--gray-700);
-            background: var(--gray-50);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
-        nav {
-            position: fixed;
+        /* Hero: full-width canvas */
+        .hero {
+            position: relative;
+            background: var(--hero-bg);
+            color: var(--hero-fg);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .hero canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .hero .vignette {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at center, transparent 30%, var(--hero-bg) 100%),
+                linear-gradient(to bottom, transparent 70%, var(--hero-bg) 100%);
+            pointer-events: none;
+        }
+        .hero .nav {
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            z-index: 100;
-            padding: 0 2rem;
-        }
-
-        nav .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 1.6rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 60px;
+            z-index: 5;
         }
-
-        nav .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--gray-900);
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav .nav-links a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            margin-top: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .location {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 2rem;
-        }
-
-        .hero .badges {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .hero .badges a {
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-
-        .hero .badges a:hover {
-            transform: translateY(-2px);
-        }
-
-        .main-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-        }
-
-        .section-header {
+        .hero .nav .brand {
+            font-family: 'Inter Tight', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: -0.005em;
+            color: var(--hero-fg);
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--gray-200);
+            gap: 0.6rem;
         }
-
-        .section-header h2 {
-            font-size: 1.8rem;
-            color: var(--gray-900);
-            font-weight: 700;
-        }
-
-        .section-header .section-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--gray-200);
-            transition: box-shadow 0.2s, transform 0.2s;
-        }
-
-        .card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-
-        .card h3 {
-            font-size: 1.2rem;
-            color: var(--gray-900);
-            margin-bottom: 0.8rem;
-        }
-
-        .card h3 a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .card h3 a:hover {
-            text-decoration: underline;
-        }
-
-        .card .meta {
-            font-size: 0.85rem;
-            color: var(--gray-600);
-            margin-bottom: 0.8rem;
-        }
-
-        .card p {
-            color: var(--gray-600);
-            line-height: 1.7;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--gray-200);
-        }
-
-        .skill-card h3 {
-            font-size: 1.1rem;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .skill-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-card li {
-            padding: 0.4rem 0;
-            color: var(--gray-600);
-            font-size: 0.95rem;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .skill-card li:last-child {
-            border-bottom: none;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--gray-200);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.45rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
+        .hero .nav .brand::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
             border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--primary);
+            box-shadow: 0 0 14px var(--accent);
         }
+        .hero .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.6rem;
+        }
+        .hero .nav a {
+            font-size: 0.82rem;
+            color: rgba(236, 235, 230, 0.55);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .hero .nav a:hover { color: var(--hero-fg); }
 
-        .timeline-item h3 {
-            font-size: 1.2rem;
-            color: var(--gray-900);
+        .hero .content {
+            position: relative;
+            z-index: 4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--accent);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: 'Newsreader', serif;
+            font-weight: 400;
+            font-size: clamp(2rem, 6.5vw, 5.5rem);
+            line-height: 1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            color: var(--hero-fg);
+            white-space: nowrap;
+        }
+        .hero .lede {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            line-height: 1.45;
+            max-width: 30em;
+            color: rgba(236, 235, 230, 0.78);
+            margin-bottom: 2.5rem;
+        }
+        .hero .meta {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: rgba(236, 235, 230, 0.55);
+            margin-bottom: 2rem;
+        }
+        .hero .meta div span {
+            display: block;
+            color: var(--accent);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
             margin-bottom: 0.3rem;
         }
+        .hero .links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .hero .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.2rem;
+            border: 1px solid rgba(236, 235, 230, 0.18);
+            color: var(--hero-fg);
+            text-decoration: none;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .hero .links a:hover { border-color: var(--accent); background: rgba(94, 234, 212, 0.08); }
+        .hero .links a.primary { background: var(--accent); color: var(--hero-bg); border-color: var(--accent); font-weight: 600; }
+        .hero .links a.primary:hover { background: transparent; color: var(--accent); }
 
-        .timeline-item .period {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            margin-bottom: 0.8rem;
+        .hero .scroll {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            color: rgba(236, 235, 230, 0.45);
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .hero .scroll::after {
+            content: "";
+            width: 1px;
+            height: 26px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: drip 2.4s ease-in-out infinite;
+        }
+        @keyframes drip {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
         }
 
-        .timeline-item ul {
-            margin-left: 1.5rem;
-            color: var(--gray-600);
+        /* Content sections */
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
         }
+        section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        .section-head .num {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--accent);
+            font-variant-numeric: tabular-nums;
+        }
+        .section-head h2 {
+            font-family: 'Newsreader', serif;
+            font-weight: 500;
+            font-size: 1.6rem;
+            letter-spacing: -0.005em;
+        }
+        .prose { font-size: 1.02rem; line-height: 1.8; }
+        .prose p + p { margin-top: 1rem; }
 
-        .timeline-item li {
-            margin-bottom: 0.5rem;
+        .entry {
+            display: grid;
+            grid-template-columns: 5rem 1fr;
+            gap: 1.5rem;
+            padding: 1.4rem 0;
+            border-bottom: 1px solid var(--rule);
         }
+        .entry:last-child { border-bottom: none; }
+        .entry .year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--muted);
+            padding-top: 0.3rem;
+        }
+        .entry h3 {
+            font-family: 'Newsreader', serif;
+            font-weight: 500;
+            font-size: 1.18rem;
+            line-height: 1.3;
+            margin-bottom: 0.45rem;
+        }
+        .entry h3 a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .entry h3 a:hover { color: var(--accent); border-color: var(--accent); }
+        .entry p { color: var(--muted); font-size: 0.94rem; line-height: 1.65; }
 
-        .contact-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-            text-align: center;
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.85rem;
         }
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            padding: 1.25rem 1.35rem 1.1rem;
+            transition: border-color 0.15s, transform 0.15s;
+        }
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+        .skill-card h4 {
+            font-family: 'Newsreader', serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            letter-spacing: -0.005em;
+            color: var(--ink);
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.55rem;
+            border-bottom: 1px solid var(--rule-soft);
+        }
+        .skill-card ul { list-style: none; padding: 0; margin: 0; }
+        .skill-card li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            padding: 0.28rem 0;
+            line-height: 1.4;
+        }
+        .skill-card li:not(:last-child) { border-bottom: 1px solid var(--rule-soft); }
+
+        .pub {
+            font-family: 'Newsreader', serif;
+            font-size: 1.1rem;
+            line-height: 1.55;
+        }
+        .pub em { font-style: italic; }
+        .pub-meta { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 0.04em; }
 
         .contact-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.7rem;
         }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
+        .contact-links a {
+            color: var(--ink);
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            transition: all 0.2s;
+            font-family: 'Newsreader', serif;
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--rule);
+            padding: 0.55rem 0;
+            transition: color 0.15s, border-color 0.15s;
+            display: flex;
+            justify-content: space-between;
         }
-
-        .contact-link:hover {
-            background: var(--primary);
-            color: white;
+        .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+        .contact-links a .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            align-self: center;
         }
 
         footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray-600);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--gray-200);
-            margin-top: 3rem;
+            border-top: 1px solid var(--rule);
+            padding: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            letter-spacing: 0.04em;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            nav .nav-links {
-                display: none;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 760px) {
+            .hero .nav ul { display: none; }
+            .entry { grid-template-columns: 1fr; gap: 0.4rem; }
+            .hero .meta { gap: 1.2rem; }
+        }
+        @media (max-width: 460px) {
+            .hero h1 { white-space: normal; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero canvas { display: none; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">Victor Bueno Garcia</div>
-            <ul class="nav-links">
+    <header class="hero">
+        <canvas id="flow"></canvas>
+        <div class="vignette"></div>
+        <div class="nav">
+            <div class="brand">Victor Bueno Garcia</div>
+            <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#projects">Work</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#exp">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-    </nav>
 
-    <div class="hero">
-        <h1>Victor Bueno Garcia</h1>
-        <p class="subtitle">Mechanical Engineering PhD Candidate | Fluid Dynamics & CFD Specialist</p>
-        <p class="location">Santa Clara University | Santa Clara, CA</p>
-        <div class="badges">
-            <a href="https://www.linkedin.com/in/victor-bueno-garcia-a32150151/">
-                <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-            </a>
-            <a href="https://github.com/victorbuenog">
-                <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-            </a>
-            <a href="mailto:vbgarcia@scu.edu">
-                <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
-            </a>
+        <div class="content">
+            <div class="eyebrow">PhD · Mechanical Engineering · Fluid Dynamics</div>
+            <h1>Victor Bueno Garcia</h1>
+            <p class="lede">Research focused on microfluidic cooling, computational fluid dynamics, and reinforcement learning for autonomous swimmers.</p>
+            <div class="meta">
+                <div><span>STATUS</span>PhD candidate</div>
+                <div><span>WHERE</span>Santa Clara University</div>
+                <div><span>FOCUS</span>Microfluidics · Thermal · CFD · ML</div>
+            </div>
+            <div class="links">
+                <a class="primary" href="#projects">View work →</a>
+                <a href="mailto:vbgarcia@scu.edu">Email</a>
+                <a href="https://github.com/victorbuenog">GitHub</a>
+                <a href="https://www.linkedin.com/in/victor-bueno-garcia-a32150151/">LinkedIn</a>
+            </div>
         </div>
-    </div>
+        <div class="scroll">SCROLL</div>
+    </header>
 
-    <div class="main-content">
-        <section id="about" class="section">
-            <div class="section-header">
-                <div class="section-icon">👋</div>
-                <h2>About Me</h2>
-            </div>
-            <div class="card">
-                <p>I'm a Mechanical Engineering PhD candidate at Santa Clara University specializing in fluid dynamics, thermal systems, and CFD modeling. My work spans cutting-edge research in microfluidic cooling systems, computational fluid dynamics, and machine learning integration for engineering applications. I also have experience in software development (web apps, data pipelines), technical leadership, and teaching mechanical engineering concepts.</p>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <div class="section-header">
-                <div class="section-icon">🚀</div>
-                <h2>Featured Projects</h2>
-            </div>
-
-            <div class="card">
-                <h3><a href="https://scholarcommons.scu.edu/cgi/viewcontent.cgi?article=1125&context=mech_senior">AIAA Design-Build-Fly Competition Aircraft</a></h3>
-                <p>Founded and led SCU's AIAA DBF team through full aircraft design-build-test cycles. Used <strong>SolidWorks Flow Simulation</strong> for wing aerodynamics optimization, conducted wind tunnel testing, and correlated CFD results with flight data.</p>
-            </div>
-
-            <div class="card">
-                <h3>Liquid Cooling Systems for Edge Devices <span style="color: var(--gray-600); font-size: 0.9rem; font-weight: 400;">(early stage)</span></h3>
-                <p>PhD research designing precision microfluidic pumps for compact liquid cooling systems targeting high-performance computing.</p>
-            </div>
-
-            <div class="card">
-                <h3><a href="https://arxiv.org/abs/2604.03875">Collinear Swimming of Microswimmers</a></h3>
-                <p>Research on hydrodynamic interactions of microswimmers in Newtonian and shear-thinning fluids. Used COMSOL for CFD simulations, processed probe data with Python, and co-authored a peer-reviewed publication.</p>
-            </div>
-
-            <div class="card">
-                <h3><a href="https://github.com/victorbuenog/AstraNotes">AstraNotes - Local-First Notes App</a></h3>
-                <p>React + Vite web application with offline-first design, state management, and local data persistence. Built with modern front-end tooling and UX-focused design.</p>
+    <main>
+        <section id="about">
+            <div class="section-head"><span class="num">01</span><h2>About</h2></div>
+            <div class="prose">
+                <p>I'm a Mechanical Engineering PhD candidate at Santa Clara University specializing in fluid dynamics, thermal systems, and CFD modeling. My work spans microfluidic cooling for high-performance computing, computational fluid dynamics, and the integration of machine learning into engineering applications.</p>
+                <p>Outside of research I build software (web apps, data pipelines), lead student engineering organizations, and teach mechanical engineering as a graduate TA.</p>
             </div>
         </section>
 
-        <section id="skills" class="section">
-            <div class="section-header">
-                <div class="section-icon">🛠️</div>
-                <h2>Skills</h2>
-            </div>
+        <section id="projects">
+            <div class="section-head"><span class="num">02</span><h2>Selected work</h2></div>
 
-            <div class="skills-grid">
+            <article class="entry">
+                <div class="year">2026</div>
+                <div>
+                    <h3>Liquid Cooling Systems for Edge Devices</h3>
+                    <p>Doctoral research designing precision microfluidic pumps for compact liquid cooling targeting high-performance computing.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2024 - 26</div>
+                <div>
+                    <h3><a href="https://arxiv.org/abs/2604.03875">Collinear Swimming of Microswimmers</a></h3>
+                    <p>Hydrodynamic interactions of microswimmers in Newtonian and shear-thinning fluids. COMSOL simulations and Python post-processing; co-authored peer-reviewed publication.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2022 – 23</div>
+                <div>
+                    <h3><a href="https://scholarcommons.scu.edu/cgi/viewcontent.cgi?article=1125&context=mech_senior">AIAA Design-Build-Fly Aircraft</a></h3>
+                    <p>Founded and led SCU's AIAA DBF team through full design-build-test cycles. SolidWorks Flow Simulation for wing aerodynamics, wind tunnel testing, CFD–flight correlation.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2026</div>
+                <div>
+                    <h3><a href="https://github.com/victorbuenog/AstraNotes">AstraNotes — Local-First Notes App</a></h3>
+                    <p>React + Vite web application with offline-first design, state management, and local data persistence.</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="skills">
+            <div class="section-head"><span class="num">03</span><h2>Skills</h2></div>
+            <div class="skill-grid">
                 <div class="skill-card">
-                    <h3>Fluid & CFD</h3>
+                    <h4>Fluid &amp; CFD</h4>
                     <ul>
-                        <li>OpenFOAM (CFD)</li>
+                        <li>OpenFOAM</li>
                         <li>SolidWorks Flow Simulation</li>
                         <li>COMSOL Multiphysics</li>
                         <li>STAR-CCM+</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>Thermal Systems</h3>
+                    <h4>Thermal Systems</h4>
                     <ul>
                         <li>Heat transfer (conduction, convection, radiation)</li>
                         <li>Liquid cooling system design</li>
-                        <li>Two-phase flow & microfluidics</li>
+                        <li>Two-phase flow &amp; microfluidics</li>
                         <li>Heat sink design</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>ML/AI & Data</h3>
+                    <h4>ML/AI &amp; Data</h4>
                     <ul>
                         <li>Python (NumPy, pandas, scikit-learn)</li>
                         <li>Machine learning (supervised, RL, PPO)</li>
-                        <li>Local LLM experimentation (LM Studio)</li>
-                        <li>Data pipelines & ETL workflows</li>
+                        <li>Local LLM experimentation</li>
+                        <li>Data pipelines &amp; ETL</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>CAD & Design</h3>
+                    <h4>CAD &amp; Design</h4>
                     <ul>
                         <li>SolidWorks (proficient)</li>
                         <li>AutoCAD</li>
-                        <li>Fusion360</li>
+                        <li>Fusion 360</li>
                         <li>Design for Manufacturing</li>
-                        <li>3D Printing/Prototyping</li>
+                        <li>3D Printing / Prototyping</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>Software & Web Dev</h3>
+                    <h4>Software &amp; Web Dev</h4>
                     <ul>
                         <li>Python (automation, ML)</li>
                         <li>MATLAB</li>
-                        <li>React + Vite (web dev)</li>
-                        <li>Node.js/npm tooling</li>
-                        <li>Notion (planning, docs)</li>
+                        <li>React + Vite</li>
+                        <li>Node.js / npm tooling</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>Lab & Testing</h3>
+                    <h4>Lab &amp; Testing</h4>
                     <ul>
                         <li>LabVIEW DAQs</li>
-                        <li>Flow sensors & manometers</li>
+                        <li>Flow sensors &amp; manometers</li>
                         <li>Thermocouple installation</li>
-                        <li>TIM application & testing</li>
-                        <li>3D scanners & metrology</li>
+                        <li>TIM application &amp; testing</li>
+                        <li>3D scanners &amp; metrology</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>Teaching & Communication</h3>
+                    <h4>Teaching &amp; Communication</h4>
                     <ul>
-                        <li>Technical writing & documentation</li>
+                        <li>Technical writing &amp; documentation</li>
                         <li>Academic presentations</li>
-                        <li>Curriculum support (FEA, Fluid Mechanics, Heat Transfer)</li>
+                        <li>Curriculum support (FEA, Fluids, Heat Transfer)</li>
                         <li>Peer tutoring (Tau Beta Pi)</li>
                     </ul>
                 </div>
-
                 <div class="skill-card">
-                    <h3>Leadership & Operations</h3>
+                    <h4>Leadership &amp; Operations</h4>
                     <ul>
                         <li>Team supervision (15+ staff)</li>
-                        <li>Event planning & outreach</li>
-                        <li>Crisis management & conflict resolution</li>
+                        <li>Event planning &amp; outreach</li>
+                        <li>Crisis management</li>
                         <li>Process optimization</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="section">
-            <div class="section-header">
-                <div class="section-icon">🎓</div>
-                <h2>Education</h2>
+        <section id="exp">
+            <div class="section-head"><span class="num">04</span><h2>Experience</h2></div>
+
+            <article class="entry">
+                <div class="year">2024 – now</div>
+                <div>
+                    <h3>Research Assistant — SCU School of Engineering</h3>
+                    <p>Lead research on liquid cooling for edge devices and HPC. Develop CFD models and reinforcement-learning controllers for autonomous swimmers and energy harvesting. Manufacture precision microfluidic devices for human-motion sensing.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2022 – 23</div>
+                <div>
+                    <h3>Engineering Intern — HP Inc., Palo Alto</h3>
+                    <p>Designed mechanical components in SolidWorks for MJF 3D printing. Performed thermal and geometric FEA correlated with physical testing. Contributed to a patent application for additive-manufacturing quality control.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2023 – now</div>
+                <div>
+                    <h3>Teaching Assistant — Santa Clara University</h3>
+                    <p>Lab sections for Mechanical Design, FEA, Fluid Mechanics, Heat Transfer, Vibrations, and Modern Instrumentation.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2023 – now</div>
+                <div>
+                    <h3>Assistant Resident Director — SCU</h3>
+                    <p>Manage residence-hall operations, supervise 15+ staff, lead training and incident response.</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="publications">
+            <div class="section-head"><span class="num">05</span><h2>Publications</h2></div>
+            <p class="pub">
+                Bueno Garcia, V. <em>et al.</em> &ldquo;Collinear Swimming of a Squirmer Pair in Newtonian and Shear-Thinning Fluids.&rdquo;
+                <span class="pub-meta">Co-author · Available on arXiv</span>
+            </p>
+        </section>
+
+        <section id="contact">
+            <div class="section-head"><span class="num">06</span><h2>Contact</h2></div>
+            <div class="prose" style="margin-bottom: 1.5rem;">
+                <p>Open to collaboration on fluid dynamics, thermal management, or applied ML in engineering — and happy to chat about research opportunities.</p>
             </div>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Santa Clara University</h3>
-                    <p class="period">PhD in Mechanical Engineering (Fluid Dynamics & Thermal Systems) – Expected 2029</p>
-                    <p>Focus: Microfluidics, CFD, RL-powered autonomous swimmers.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Santa Clara University</h3>
-                    <p class="period">MS in Mechanical Engineering (Design & Manufacturing) – Graduated March 2025</p>
-                    <p>Relevant Coursework: Finite Element Methods, Heat Transfer, Advanced Fluid Mechanics, Additive Manufacturing, Machine Learning, Continuum Mechanics</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Santa Clara University</h3>
-                    <p class="period">BS in Mechanical Engineering (Aerospace Minor) – Graduated June 2023</p>
-                    <p>Honors: Dean's List, Pi Tau Sigma, Tau Beta Pi Honor Societies</p>
-                    <p>Relevant Coursework: Fluid/Solid Mechanics, Machine Design, Thermodynamics, Materials & Manufacturing, Control Systems</p>
-                </div>
+            <div class="contact-links">
+                <a href="mailto:vbgarcia@scu.edu">vbgarcia@scu.edu<span class="label">Academic</span></a>
+                <a href="mailto:victorbuenog@gmail.com">victorbuenog@gmail.com<span class="label">Personal</span></a>
+                <a href="https://github.com/victorbuenog">github.com/victorbuenog<span class="label">GitHub</span></a>
+                <a href="https://www.linkedin.com/in/victor-bueno-garcia-a32150151/">linkedin.com/in/victor-bueno-garcia<span class="label">LinkedIn</span></a>
             </div>
         </section>
 
-        <section id="experience" class="section">
-            <div class="section-header">
-                <div class="section-icon">💼</div>
-                <h2>Professional Experience</h2>
-            </div>
+        <footer>
+            <span>© 2026 Victor Bueno Garcia</span>
+            <span>Hosted on GitHub Pages</span>
+        </footer>
+    </main>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Research Assistant | Santa Clara University School of Engineering</h3>
-                    <p class="period">July 2024 – Present</p>
-                    <ul>
-                        <li>Lead research on liquid cooling systems for edge devices and high-performance computing</li>
-                        <li>Develop CFD models to optimize thermal-fluid performance</li>
-                        <li>Develop Reinforcement Learning models for autonomous swimmers and energy harvesting applications</li>
-                        <li>Manufacture precise microfluidic devices for human motion detection</li>
-                    </ul>
-                </div>
+    <script>
+        // Particle flow field hero. Layered sin/cos pseudo-noise -> angle field.
+        // Particles trace streamlines; canvas accumulates with a fading background.
+        (function() {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduce) return;
+            const canvas = document.getElementById('flow');
+            const ctx = canvas.getContext('2d');
+            let w = 0, h = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
+            const particles = [];
+            const N = 220;
 
-                <div class="timeline-item">
-                    <h3>Engineering Intern | HP Inc., Palo Alto, CA</h3>
-                    <p class="period">June 2022 – June 2023</p>
-                    <ul>
-                        <li>Designed mechanical components in SolidWorks for MJF 3D printing applications</li>
-                        <li>Performed thermal and geometric FEA on printed parts, correlating with physical testing</li>
-                        <li>Contributed to patent application for additive manufacturing quality control methods</li>
-                    </ul>
-                </div>
+            function readColors() {
+                const cs = getComputedStyle(document.documentElement);
+                return {
+                    trail: cs.getPropertyValue('--hero-trail').trim() || 'rgba(0,0,0,0.05)',
+                    p1: cs.getPropertyValue('--hero-particle').trim() || 'rgba(94,234,212,0.5)',
+                    p2: cs.getPropertyValue('--hero-particle-2').trim() || 'rgba(125,211,252,0.4)'
+                };
+            }
+            let colors = readColors();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                colors = readColors();
+            });
 
-                <div class="timeline-item">
-                    <h3>Teaching Assistant | Santa Clara University</h3>
-                    <p class="period">September 2023 – Present</p>
-                    <ul>
-                        <li>Facilitate lab sections for Mechanical Design, FEA, Fluid Mechanics, Heat Transfer, Vibrations, and Modern Instrumentation</li>
-                        <li>Provide one-on-one tutoring, grade assignments, and host exam review sessions</li>
-                    </ul>
-                </div>
+            function resize() {
+                const rect = canvas.getBoundingClientRect();
+                w = rect.width; h = rect.height;
+                canvas.width = Math.floor(w * dpr);
+                canvas.height = Math.floor(h * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.clearRect(0, 0, w, h);
+            }
 
-                <div class="timeline-item">
-                    <h3>Assistant Resident Director | Santa Clara University</h3>
-                    <p class="period">August 2023 – Present</p>
-                    <ul>
-                        <li>Manage residence hall operations, inventory tracking, and documentation control</li>
-                        <li>Supervise 15+ staff members, leading training and performance development</li>
-                        <li>Handle incident response, crisis management, and policy enforcement</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            function spawn(p) {
+                p.x = Math.random() * w;
+                p.y = Math.random() * h;
+                p.vx = 0; p.vy = 0;
+                p.life = Math.random() * 200 + 80;
+                p.alt = Math.random() < 0.35;
+            }
+            function init() {
+                particles.length = 0;
+                for (let i = 0; i < N; i++) {
+                    const p = {};
+                    spawn(p);
+                    particles.push(p);
+                }
+            }
 
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">🏆</div>
-                <h2>Leadership & Activities</h2>
-            </div>
+            function angleAt(x, y, t) {
+                // Layered sinusoids — looks like a smooth flow field.
+                const a = Math.sin(x * 0.0042 + t * 0.00045) +
+                          Math.cos(y * 0.0058 - t * 0.00038) +
+                          Math.sin((x + y) * 0.0021 + t * 0.00022) * 0.6;
+                return a * Math.PI * 0.55;
+            }
 
-            <div class="card">
-                <ul>
-                    <li><strong>Founder & Project Lead</strong>, SCU AIAA Design-Build-Fly Team: Established aerospace student organization, led end-to-end aircraft design cycles, managed cross-functional teams</li>
-                    <li><strong>Former President</strong>, Pi Tau Sigma Mechanical Engineering Honor Society: Managed chapter operations, event programming, and faculty partnerships</li>
-                    <li><strong>Tutor</strong>, Tau Beta Pi Engineering Honor Society: Tutored students across multiple engineering subjects</li>
-                </ul>
-            </div>
-        </section>
+            let last = performance.now();
+            let t0 = performance.now();
+            function frame(now) {
+                const dt = Math.min(40, now - last);
+                last = now;
+                const t = now - t0;
 
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">📚</div>
-                <h2>Publications</h2>
-            </div>
+                // Fade canvas (build trails)
+                ctx.fillStyle = colors.trail;
+                ctx.fillRect(0, 0, w, h);
 
-            <div class="card">
-                <p>Co-author: <em>"Collinear Swimming of a Squirmer Pair in Newtonian and Shear-Thinning Fluids"</em></p>
-            </div>
-        </section>
+                ctx.lineCap = 'round';
+                for (const p of particles) {
+                    const ang = angleAt(p.x, p.y, t);
+                    const speed = 0.55;
+                    p.vx = Math.cos(ang) * speed;
+                    p.vy = Math.sin(ang) * speed;
+                    const nx = p.x + p.vx * dt * 0.08;
+                    const ny = p.y + p.vy * dt * 0.08;
 
-        <section id="contact" class="section">
-            <div class="section-header">
-                <div class="section-icon">📫</div>
-                <h2>Contact</h2>
-            </div>
+                    ctx.beginPath();
+                    ctx.strokeStyle = p.alt ? colors.p2 : colors.p1;
+                    ctx.lineWidth = p.alt ? 0.8 : 1.1;
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(nx, ny);
+                    ctx.stroke();
 
-            <div class="contact-section">
-                <p>Feel free to reach out for collaboration, research discussions, or opportunities.</p>
-                <div class="contact-links">
-                    <a href="mailto:vbgarcia@scu.edu" class="contact-link">📧 vbgarcia@scu.edu</a>
-                    <a href="mailto:victorbuenog@gmail.com" class="contact-link">📧 victorbuenog@gmail.com</a>
-                    <a href="https://github.com/victorbuenog" class="contact-link">💻 GitHub</a>
-                </div>
-            </div>
-        </section>
-    </div>
+                    p.x = nx; p.y = ny;
+                    p.life -= dt * 0.06;
+                    if (p.x < -10 || p.x > w + 10 || p.y < -10 || p.y > h + 10 || p.life <= 0) {
+                        spawn(p);
+                    }
+                }
+                requestAnimationFrame(frame);
+            }
 
-    <footer>
-        <p>© 2024 Victor Bueno Garcia | Hosted on GitHub Pages</p>
-    </footer>
+            resize();
+            init();
+            requestAnimationFrame(frame);
+            window.addEventListener('resize', () => { resize(); init(); });
+        })();
+    </script>
 </body>
 </html>
