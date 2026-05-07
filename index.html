@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Bueno Garcia | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: var(--gray-50);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        nav .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            margin-top: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .location {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .badges a {
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .hero .badges a:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--gray-900);
+            font-weight: 700;
+        }
+
+        .section-header .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray-200);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--gray-900);
+            margin-bottom: 0.8rem;
+        }
+
+        .card h3 a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .card h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .card .meta {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-card li {
+            padding: 0.4rem 0;
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.45rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            color: var(--gray-900);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item .period {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-item ul {
+            margin-left: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">Victor Bueno Garcia</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Victor Bueno Garcia</h1>
+        <p class="subtitle">Mechanical Engineering PhD Candidate | Fluid Dynamics & CFD Specialist</p>
+        <p class="location">Santa Clara University | Santa Clara, CA</p>
+        <div class="badges">
+            <a href="https://www.linkedin.com/in/victor-bueno-garcia-a32150151/">
+                <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/victorbuenog">
+                <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+            </a>
+            <a href="mailto:vbgarcia@scu.edu">
+                <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section id="about" class="section">
+            <div class="section-header">
+                <div class="section-icon">👋</div>
+                <h2>About Me</h2>
+            </div>
+            <div class="card">
+                <p>I'm a Mechanical Engineering PhD candidate at Santa Clara University specializing in fluid dynamics, thermal systems, and CFD modeling. My work spans cutting-edge research in microfluidic cooling systems, computational fluid dynamics, and machine learning integration for engineering applications. I also have experience in software development (web apps, data pipelines), technical leadership, and teaching mechanical engineering concepts.</p>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-header">
+                <div class="section-icon">🚀</div>
+                <h2>Featured Projects</h2>
+            </div>
+
+            <div class="card">
+                <h3><a href="https://scholarcommons.scu.edu/cgi/viewcontent.cgi?article=1125&context=mech_senior">AIAA Design-Build-Fly Competition Aircraft</a></h3>
+                <p>Founded and led SCU's AIAA DBF team through full aircraft design-build-test cycles. Used <strong>SolidWorks Flow Simulation</strong> for wing aerodynamics optimization, conducted wind tunnel testing, and correlated CFD results with flight data.</p>
+            </div>
+
+            <div class="card">
+                <h3>Liquid Cooling Systems for Edge Devices <span style="color: var(--gray-600); font-size: 0.9rem; font-weight: 400;">(early stage)</span></h3>
+                <p>PhD research designing precision microfluidic pumps for compact liquid cooling systems targeting high-performance computing.</p>
+            </div>
+
+            <div class="card">
+                <h3><a href="https://arxiv.org/abs/2604.03875">Collinear Swimming of Microswimmers</a></h3>
+                <p>Research on hydrodynamic interactions of microswimmers in Newtonian and shear-thinning fluids. Used COMSOL for CFD simulations, processed probe data with Python, and co-authored a peer-reviewed publication.</p>
+            </div>
+
+            <div class="card">
+                <h3><a href="https://github.com/victorbuenog/AstraNotes">AstraNotes - Local-First Notes App</a></h3>
+                <p>React + Vite web application with offline-first design, state management, and local data persistence. Built with modern front-end tooling and UX-focused design.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="section-header">
+                <div class="section-icon">🛠️</div>
+                <h2>Skills</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Fluid & CFD</h3>
+                    <ul>
+                        <li>OpenFOAM (CFD)</li>
+                        <li>SolidWorks Flow Simulation</li>
+                        <li>COMSOL Multiphysics</li>
+                        <li>STAR-CCM+</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Thermal Systems</h3>
+                    <ul>
+                        <li>Heat transfer (conduction, convection, radiation)</li>
+                        <li>Liquid cooling system design</li>
+                        <li>Two-phase flow & microfluidics</li>
+                        <li>Heat sink design</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>ML/AI & Data</h3>
+                    <ul>
+                        <li>Python (NumPy, pandas, scikit-learn)</li>
+                        <li>Machine learning (supervised, RL, PPO)</li>
+                        <li>Local LLM experimentation (LM Studio)</li>
+                        <li>Data pipelines & ETL workflows</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>CAD & Design</h3>
+                    <ul>
+                        <li>SolidWorks (proficient)</li>
+                        <li>AutoCAD</li>
+                        <li>Fusion360</li>
+                        <li>Design for Manufacturing</li>
+                        <li>3D Printing/Prototyping</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Software & Web Dev</h3>
+                    <ul>
+                        <li>Python (automation, ML)</li>
+                        <li>MATLAB</li>
+                        <li>React + Vite (web dev)</li>
+                        <li>Node.js/npm tooling</li>
+                        <li>Notion (planning, docs)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Lab & Testing</h3>
+                    <ul>
+                        <li>LabVIEW DAQs</li>
+                        <li>Flow sensors & manometers</li>
+                        <li>Thermocouple installation</li>
+                        <li>TIM application & testing</li>
+                        <li>3D scanners & metrology</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Teaching & Communication</h3>
+                    <ul>
+                        <li>Technical writing & documentation</li>
+                        <li>Academic presentations</li>
+                        <li>Curriculum support (FEA, Fluid Mechanics, Heat Transfer)</li>
+                        <li>Peer tutoring (Tau Beta Pi)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Leadership & Operations</h3>
+                    <ul>
+                        <li>Team supervision (15+ staff)</li>
+                        <li>Event planning & outreach</li>
+                        <li>Crisis management & conflict resolution</li>
+                        <li>Process optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2>Education</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Santa Clara University</h3>
+                    <p class="period">PhD in Mechanical Engineering (Fluid Dynamics & Thermal Systems) – Expected 2029</p>
+                    <p>Focus: Microfluidics, CFD, RL-powered autonomous swimmers.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Santa Clara University</h3>
+                    <p class="period">MS in Mechanical Engineering (Design & Manufacturing) – Graduated March 2025</p>
+                    <p>Relevant Coursework: Finite Element Methods, Heat Transfer, Advanced Fluid Mechanics, Additive Manufacturing, Machine Learning, Continuum Mechanics</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Santa Clara University</h3>
+                    <p class="period">BS in Mechanical Engineering (Aerospace Minor) – Graduated June 2023</p>
+                    <p>Honors: Dean's List, Pi Tau Sigma, Tau Beta Pi Honor Societies</p>
+                    <p>Relevant Coursework: Fluid/Solid Mechanics, Machine Design, Thermodynamics, Materials & Manufacturing, Control Systems</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="section-header">
+                <div class="section-icon">💼</div>
+                <h2>Professional Experience</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Research Assistant | Santa Clara University School of Engineering</h3>
+                    <p class="period">July 2024 – Present</p>
+                    <ul>
+                        <li>Lead research on liquid cooling systems for edge devices and high-performance computing</li>
+                        <li>Develop CFD models to optimize thermal-fluid performance</li>
+                        <li>Develop Reinforcement Learning models for autonomous swimmers and energy harvesting applications</li>
+                        <li>Manufacture precise microfluidic devices for human motion detection</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Engineering Intern | HP Inc., Palo Alto, CA</h3>
+                    <p class="period">June 2022 – June 2023</p>
+                    <ul>
+                        <li>Designed mechanical components in SolidWorks for MJF 3D printing applications</li>
+                        <li>Performed thermal and geometric FEA on printed parts, correlating with physical testing</li>
+                        <li>Contributed to patent application for additive manufacturing quality control methods</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Teaching Assistant | Santa Clara University</h3>
+                    <p class="period">September 2023 – Present</p>
+                    <ul>
+                        <li>Facilitate lab sections for Mechanical Design, FEA, Fluid Mechanics, Heat Transfer, Vibrations, and Modern Instrumentation</li>
+                        <li>Provide one-on-one tutoring, grade assignments, and host exam review sessions</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Assistant Resident Director | Santa Clara University</h3>
+                    <p class="period">August 2023 – Present</p>
+                    <ul>
+                        <li>Manage residence hall operations, inventory tracking, and documentation control</li>
+                        <li>Supervise 15+ staff members, leading training and performance development</li>
+                        <li>Handle incident response, crisis management, and policy enforcement</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🏆</div>
+                <h2>Leadership & Activities</h2>
+            </div>
+
+            <div class="card">
+                <ul>
+                    <li><strong>Founder & Project Lead</strong>, SCU AIAA Design-Build-Fly Team: Established aerospace student organization, led end-to-end aircraft design cycles, managed cross-functional teams</li>
+                    <li><strong>Former President</strong>, Pi Tau Sigma Mechanical Engineering Honor Society: Managed chapter operations, event programming, and faculty partnerships</li>
+                    <li><strong>Tutor</strong>, Tau Beta Pi Engineering Honor Society: Tutored students across multiple engineering subjects</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📚</div>
+                <h2>Publications</h2>
+            </div>
+
+            <div class="card">
+                <p>Co-author: <em>"Collinear Swimming of a Squirmer Pair in Newtonian and Shear-Thinning Fluids"</em></p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-header">
+                <div class="section-icon">📫</div>
+                <h2>Contact</h2>
+            </div>
+
+            <div class="contact-section">
+                <p>Feel free to reach out for collaboration, research discussions, or opportunities.</p>
+                <div class="contact-links">
+                    <a href="mailto:vbgarcia@scu.edu" class="contact-link">📧 vbgarcia@scu.edu</a>
+                    <a href="mailto:victorbuenog@gmail.com" class="contact-link">📧 victorbuenog@gmail.com</a>
+                    <a href="https://github.com/victorbuenog" class="contact-link">💻 GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Victor Bueno Garcia | Hosted on GitHub Pages</p>
+    </footer>
+</body>
+</html>
